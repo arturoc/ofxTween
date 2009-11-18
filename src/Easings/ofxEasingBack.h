@@ -1,13 +1,8 @@
-#ifndef _PENNER_SINE
-#define _PENNER_SINE
-#include "ofxTweenEasing.h"
-#include <math.h>
+#ifndef _PENNER_BACK
+#define _PENNER_BACK
 
-#ifndef PI
-#define PI  3.14159265
-#endif
-
-class ofxTweenSine: public ofxTweenEasing {
+#include "ofxEasing.h"
+class ofxEasingBack: public ofxEasing {
 
 	public:
 

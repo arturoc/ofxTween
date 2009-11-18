@@ -1,33 +1,3 @@
-/*
- * Copyright 2007 (c) Erik Sjodin, eriksjodin.net
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */
-
-/**
- * Inspired by http://code.google.com/p/tweener/
- * Uses http://www.jesusgollonet.com/blog/2007/09/24/penner-easing-cpp/
- */
-
 #include "ofxTween.h"
 
 ofxTween::ofxTween(){
@@ -42,7 +12,7 @@ ofxTween::ofxTween(){
 
 }
 
-ofxTween::ofxTween(int id,  ofxTweenEasing & easing, ofxEasingType type,  float from, float to, unsigned duration, unsigned delay) {
+ofxTween::ofxTween(int id,  ofxEasing & easing, ofxEasingType type,  float from, float to, unsigned duration, unsigned delay) {
 	setParameters(id, easing, type, from,to,duration,delay);
 }
 
@@ -50,11 +20,11 @@ ofxTween::~ofxTween() {
 	if(easingFunction) delete easingFunction;
 }
 
-void ofxTween::setParameters( ofxTweenEasing & easing, ofxEasingType type, float from, float to, unsigned duration, unsigned delay){
+void ofxTween::setParameters( ofxEasing & easing, ofxEasingType type, float from, float to, unsigned duration, unsigned delay){
 	setParameters(id, easing, type, from,to,duration,delay);
 }
 
-void ofxTween::setParameters(int _id,  ofxTweenEasing & _easing, ofxEasingType _type,  float _from, float _to, unsigned _duration, unsigned _delay){
+void ofxTween::setParameters(int _id,  ofxEasing & _easing, ofxEasingType _type,  float _from, float _to, unsigned _duration, unsigned _delay){
 	from.clear();
 	to.clear();
 	change.clear();
@@ -66,13 +36,13 @@ void ofxTween::setParameters(int _id,  ofxTweenEasing & _easing, ofxEasingType _
 	if(easingFunction) delete easingFunction;
 	switch(type){
 	case easeIn:
-		easingFunction = new ofxTweenDelegate(easing, &ofxTweenEasing::easeIn);
+		easingFunction = new ofxTweenDelegate(easing, &ofxEasing::easeIn);
 	break;
 	case easeOut:
-		easingFunction = new ofxTweenDelegate(easing, &ofxTweenEasing::easeOut);
+		easingFunction = new ofxTweenDelegate(easing, &ofxEasing::easeOut);
 	break;
 	case easeInOut:
-		easingFunction = new ofxTweenDelegate(easing, &ofxTweenEasing::easeInOut);
+		easingFunction = new ofxTweenDelegate(easing, &ofxEasing::easeInOut);
 	break;
 	}
 
@@ -106,7 +76,7 @@ uint ofxTween::getDuration() {
 	return duration;
 }
 
-float ofxTween::getTarget(int pos) {
+float ofxTween::getTarget(unsigned pos) {
 	if(pTarget.size()>pos)
 		return pTarget[pos];
 	else
@@ -134,7 +104,7 @@ float ofxTween::update() {
 		}
 
 		else if(timestamp.elapsed()>0){
-			ofxTweenEasingArgs args;
+			ofxEasingArgs args;
 			float elapsedTime = float(timestamp.elapsed());
 			args.t= elapsedTime;
 			args.d= float(duration);

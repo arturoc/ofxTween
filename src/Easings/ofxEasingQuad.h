@@ -1,8 +1,7 @@
-#ifndef _PENNER_BOUNCE
-#define _PENNER_BOUNCE
-
-#include "ofxTweenEasing.h"
-class ofxTweenBounce: public ofxTweenEasing {
+#ifndef _PENNER_QUAD
+#define _PENNER_QUAD
+#include "ofxEasing.h"
+class ofxEasingQuad: public ofxEasing {
 
 	public:
 

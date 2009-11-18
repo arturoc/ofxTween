@@ -1,13 +1,13 @@
-#include "ofxTweenQuad.h"
+#include "ofxEasingQuad.h"
 
-float ofxTweenQuad::easeIn (float t,float b , float c, float d) {
+float ofxEasingQuad::easeIn (float t,float b , float c, float d) {
 	return c*(t/=d)*t + b;
 }
-float ofxTweenQuad::easeOut(float t,float b , float c, float d) {
+float ofxEasingQuad::easeOut(float t,float b , float c, float d) {
 	return -c *(t/=d)*(t-2) + b;
 }
 
-float ofxTweenQuad::easeInOut(float t,float b , float c, float d) {
+float ofxEasingQuad::easeInOut(float t,float b , float c, float d) {
 	if ((t/=d/2) < 1) return ((c/2)*(t*t)) + b;
 	return -c/2 * (((t-2)*(--t)) - 1) + b;
 	/*

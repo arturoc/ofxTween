@@ -5,17 +5,17 @@
  *      Author: arturo castro
  */
 
-#include "ofxTweenEasing.h"
+#include "ofxEasing.h"
 
 
-void ofxTweenEasing::easeIn(ofxTweenEasingArgs & args){
+void ofxEasing::easeIn(ofxEasingArgs & args){
 	args.res=easeIn(args.t,args.b,args.c,args.d);
 }
 
-void ofxTweenEasing::easeOut(ofxTweenEasingArgs & args){
+void ofxEasing::easeOut(ofxEasingArgs & args){
 	args.res=easeOut(args.t,args.b,args.c,args.d);
 }
 
-void ofxTweenEasing::easeInOut(ofxTweenEasingArgs & args){
+void ofxEasing::easeInOut(ofxEasingArgs & args){
 	args.res=easeInOut(args.t,args.b,args.c,args.d);
 }

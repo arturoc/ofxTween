@@ -1,9 +1,9 @@
-#ifndef _PENNER_CIRC
-#define _PENNER_CIRC
+#ifndef _PENNER_EXPO
+#define _PENNER_EXPO
 
 #include <math.h>
-#include "ofxTweenEasing.h"
-class ofxTweenCirc: public ofxTweenEasing {
+#include "ofxEasing.h"
+class ofxEasingExpo: public ofxEasing {
 
 	public:
 

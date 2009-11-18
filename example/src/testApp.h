@@ -32,19 +32,21 @@ class testApp : public ofBaseApp{
        ofxTween tweenquad;
        ofxTween tweenquart;
        ofxTween tweenquint;
+       ofxTween tweensine;
 
        ofxTween multitween;
 
-       ofxTweenBack 	easingback;
-       ofxTweenBounce 	easingbounce;
-       ofxTweenCirc 	easingcirc;
-       ofxTweenCubic 	easingcubic;
-       ofxTweenElastic 	easingelastic;
-       ofxTweenExpo 	easingexpo;
-       ofxTweenLinear 	easinglinear;
-       ofxTweenQuad 	easingquad;
-       ofxTweenQuart 	easingquart;
-       ofxTweenQuint 	easingquint;
+       ofxEasingBack 	easingback;
+       ofxEasingBounce 	easingbounce;
+       ofxEasingCirc 	easingcirc;
+       ofxEasingCubic 	easingcubic;
+       ofxEasingElastic easingelastic;
+       ofxEasingExpo 	easingexpo;
+       ofxEasingLinear 	easinglinear;
+       ofxEasingQuad 	easingquad;
+       ofxEasingQuart 	easingquart;
+       ofxEasingQuint 	easingquint;
+       ofxEasingSine	easingsine;
 };
 
 #endif

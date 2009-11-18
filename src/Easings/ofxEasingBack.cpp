@@ -1,16 +1,16 @@
-#include "ofxTweenBack.h"
+#include "ofxEasingBack.h"
 
-float ofxTweenBack::easeIn (float t,float b , float c, float d) {
+float ofxEasingBack::easeIn (float t,float b , float c, float d) {
 	float s = 1.70158f;
 	float postFix = t/=d;
 	return c*(postFix)*t*((s+1)*t - s) + b;
 }
-float ofxTweenBack::easeOut(float t,float b , float c, float d) {
+float ofxEasingBack::easeOut(float t,float b , float c, float d) {
 	float s = 1.70158f;
 	return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
 }
 
-float ofxTweenBack::easeInOut(float t,float b , float c, float d) {
+float ofxEasingBack::easeInOut(float t,float b , float c, float d) {
 	float s = 1.70158f;
 	if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525f))+1)*t - s)) + b;
 	float postFix = t-=2;

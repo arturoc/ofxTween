@@ -1,13 +1,13 @@
-#include "ofxTweenExpo.h"
+#include "ofxEasingExpo.h"
 
-float ofxTweenExpo::easeIn (float t,float b , float c, float d) {
+float ofxEasingExpo::easeIn (float t,float b , float c, float d) {
 	return (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b;
 }
-float ofxTweenExpo::easeOut(float t,float b , float c, float d) {
+float ofxEasingExpo::easeOut(float t,float b , float c, float d) {
 	return (t==d) ? b+c : c * (-pow(2, -10 * t/d) + 1) + b;
 }
 
-float ofxTweenExpo::easeInOut(float t,float b , float c, float d) {
+float ofxEasingExpo::easeInOut(float t,float b , float c, float d) {
 	if (t==0) return b;
 	if (t==d) return b+c;
 	if ((t/=d/2) < 1) return c/2 * pow(2, 10 * (t - 1)) + b;

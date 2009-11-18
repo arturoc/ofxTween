@@ -1,15 +1,13 @@
-#ifndef _PENNER_BACK
-#define _PENNER_BACK
-
-#include "ofxTweenEasing.h"
-class ofxTweenBack: public ofxTweenEasing {
+#ifndef _PENNER_QUART
+#define _PENNER_QUART
+#include "ofxEasing.h"
+class ofxEasingQuart: public ofxEasing {
 
 	public:
 
 		float easeIn(float t,float b , float c, float d);
 		float easeOut(float t,float b , float c, float d);
 		float easeInOut(float t,float b , float c, float d);
-
 };
 
 #endif

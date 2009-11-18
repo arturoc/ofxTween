@@ -1,7 +1,7 @@
 #ifndef EASING_H_
 #define EASING_H_
 
-class ofxTweenEasingArgs{
+class ofxEasingArgs{
 public:
 	float t;
 	float b;
@@ -12,11 +12,11 @@ public:
 };
 
 
-class ofxTweenEasing{
+class ofxEasing{
 public:
-		void easeIn(ofxTweenEasingArgs & args);
-		void easeOut(ofxTweenEasingArgs & args);
-		void easeInOut(ofxTweenEasingArgs & args);
+		void easeIn(ofxEasingArgs & args);
+		void easeOut(ofxEasingArgs & args);
+		void easeInOut(ofxEasingArgs & args);
 
 		virtual float easeIn(float t,float b , float c, float d)=0;
 		virtual float easeOut(float t,float b , float c, float d)=0;
