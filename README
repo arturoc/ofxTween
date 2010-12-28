@@ -1,0 +1,10 @@
+obviousjim's ofxTween Fork
+**~~~~**~~~~**~~~~**~~~~**
+
+This fork is from artuor's original ofxTween 
+with the added function of being able to
+access the tween functions statically, much
+like you would ofMap
+
+included example projects for both arturo's
+example and my own
