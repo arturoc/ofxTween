@@ -1,3 +1,36 @@
+/*
+ *  ofxTweenMapExample
+ *
+ * Created by James George http://www.jamesgeorge.org
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * ----------------------
+ *
+ * ofxTweenMapExample shows how to use the added static mapping function
+ * in ofxTween.
+ *
+ */
+
 #include "testApp.h"
 
 //--------------------------------------------------------------
@@ -42,58 +75,36 @@ void testApp::draw(){
 	ofDrawBitmapString("Linear", 120, y+15);
 	y+=ystep;
 	
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeBounce, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Bounce", 120, y+15);
-	y+=ystep;
-	
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeCubic, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Cubic", 120, y+15);
-	y+=ystep;
-
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeElastic, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Elastic", 120, y+15);
-	y+=ystep;
-
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeQuart, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Quart", 120, y+15);
-	y+=ystep;
-
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeBack, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Back", 120, y+15);
-	y+=ystep;
-
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeCirc, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Circular", 120, y+15);
-	y+=ystep;
-
-	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeExpo, easingType);
-	ofCircle(x, y, radius);
-	ofLine(0, y, ofGetWidth(), y);
-	ofDrawBitmapString("Exponential", 120, y+15);
-	y+=ystep;
-
+		
 	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeQuad, easingType);
 	ofCircle(x, y, radius);
 	ofLine(0, y, ofGetWidth(), y);
 	ofDrawBitmapString("Quadratic", 120, y+15);
 	y+=ystep;
-
+				
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeCubic, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Cubic", 120, y+15);
+	y+=ystep;
+	
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeQuart, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Quartic", 120, y+15);
+	y+=ystep;
+	
 	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeQuint, easingType);
 	ofCircle(x, y, radius);
 	ofLine(0, y, ofGetWidth(), y);
 	ofDrawBitmapString("Quintic", 120, y+15);
+	y+=ystep;
+	
+		
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeExpo, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Exponential", 120, y+15);
 	y+=ystep;
 
 	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeSine, easingType);
@@ -101,6 +112,31 @@ void testApp::draw(){
 	ofLine(0, y, ofGetWidth(), y);
 	ofDrawBitmapString("Sine", 120, y+15);
 	y+=ystep;
+	
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeCirc, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Circular", 120, y+15);
+	y+=ystep;
+	
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeBack, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Back", 120, y+15);
+	y+=ystep;
+	
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeBounce, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Bounce", 120, y+15);
+	y+=ystep;	
+
+	x = ofxTween::map(mouseX, 0, ofGetWidth(), 100, ofGetWidth()-100, clamp, easeElastic, easingType);
+	ofCircle(x, y, radius);
+	ofLine(0, y, ofGetWidth(), y);
+	ofDrawBitmapString("Elastic", 120, y+15);
+	y+=ystep;
+
 
 	ofSetColor(220, 100, 100);
 	ofLine(100, 0, 100, ofGetHeight());
@@ -117,8 +153,8 @@ void testApp::draw(){
 	
 	ofSetColor(0, 0, 0);
 	string draw = string("press c to toggle clamp. clamp is ") + string(clamp ? "on" : "off");
-	draw += "press e to change ease. ease is " + easestring;
-	ofDrawBitmapString(draw, 120, 15);
+	draw += "\npress e to change ease. ease is " + easestring;
+	ofDrawBitmapString(draw, 120, ofGetHeight()-20);
 
 }
 
