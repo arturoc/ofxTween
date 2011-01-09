@@ -35,14 +35,20 @@ class ofxTween{
 		void setDuration(uint duration);
 
 		bool isRunning();
+		bool isDelaying(){ return timestamp.elapsed()<0; }
 		bool isCompleted();
 
 		void setFrameBasedAnimation(bool frameBased=true);
 
 		int id;
-
+		
 		ofEvent<int> end_E;
-
+		
+		//James George 12/27/10
+		//added static functions for tweened mapping without needing to create an ofxTween object
+		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing);
+		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing, ofxEasingType type);
+		
 	private:
 		typedef Poco::Delegate<ofxEasing,ofxEasingArgs,false> ofxTweenDelegate;
 		Poco::Timestamp	timestamp;

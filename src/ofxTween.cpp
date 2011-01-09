@@ -156,3 +156,39 @@ float ofxTween::update() {
 void ofxTween::setFrameBasedAnimation(bool frameBased){
 	this->frameBased = frameBased;
 }
+
+float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing)
+{
+	return ofxTween::map(value, inputMin, inputMax, outputMin, outputMax, clamp, easing, ofxTween::easeInOut);
+}
+
+float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing, ofxEasingType type)
+{
+	ofxEasingArgs args;
+	args.t = value;
+	if(clamp){
+		args.t = ofClamp(value, inputMin, inputMax);
+	}
+	
+	args.c = outputMax - outputMin;
+	args.d = inputMax - inputMin;
+	args.b = outputMin;
+	
+	switch (type) {
+		case ofxTween::easeIn:
+		{
+			easing.easeIn(args);
+			break;
+		}
+		case ofxTween::easeOut:
+		{
+			easing.easeOut(args);
+			break;
+		}
+		default:
+			easing.easeInOut(args);
+	}
+	
+	return args.res;
+}
+
