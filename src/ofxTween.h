@@ -37,6 +37,8 @@ class ofxTween{
 		bool isRunning();
 		bool isCompleted();
 
+		void setFrameBasedAnimation(bool frameBased=true);
+
 		int id;
 
 		ofEvent<int> end_E;
@@ -49,6 +51,7 @@ class ofxTween{
 		vector<float> to;
 		vector<float> change;
 		vector<float> pTarget;
+		unsigned elapsed;
 
 		float startTime;
 
@@ -63,6 +66,8 @@ class ofxTween{
 		ofxTweenDelegate * easingFunction;
 		ofxEasing * easing;
 		ofxEasingType type;
+
+		bool frameBased;
 
 };
 

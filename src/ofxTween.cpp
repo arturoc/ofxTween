@@ -9,7 +9,7 @@ ofxTween::ofxTween(){
 
 	easing = NULL;
 	id = -1;
-
+	frameBased = false;
 }
 
 ofxTween::ofxTween(int id,  ofxEasing & easing, ofxEasingType type,  float from, float to, unsigned duration, unsigned delay) {
@@ -47,8 +47,13 @@ void ofxTween::setParameters(int _id,  ofxEasing & _easing, ofxEasingType _type,
 	}
 
 	addValue(_from,_to);
-	duration = _duration*1000;
-	delay = _delay*1000;
+	if(frameBased){
+		duration = _duration;
+		delay = _delay;
+	}else{
+		duration = _duration*1000;
+		delay = _delay*1000;
+	}
 	start();
 
 	completed = false;
@@ -64,12 +69,20 @@ void ofxTween::addValue(float _from, float _to){
 }
 
 void ofxTween::start(){
-	timestamp = Poco::Timestamp();
-	timestamp += delay;
+	if(!frameBased){
+		timestamp = Poco::Timestamp();
+		timestamp += delay;
+	}else{
+		elapsed=0;
+	}
 }
 
 void ofxTween::setDuration(uint _duration) {
-	duration = _duration*1000;
+	if(frameBased){
+		duration = _duration;
+	}else{
+		duration = _duration*1000;
+	}
 }
 
 uint ofxTween::getDuration() {
@@ -94,19 +107,10 @@ bool ofxTween::isCompleted() {
 float ofxTween::update() {
 	if(!completed){
 
-		if (timestamp.isElapsed(duration)){
-			for(unsigned i=0; i<from.size(); i++){
-				pTarget[i] = to[i];
-			}
-			running = false;
-			completed = true;
-			ofNotifyEvent(end_E,id);
-		}
-
-		else if(timestamp.elapsed()>0){
+		if(frameBased){
 			ofxEasingArgs args;
-			float elapsedTime = float(timestamp.elapsed());
-			args.t= elapsedTime;
+			elapsed++;
+			args.t= elapsed;
 			args.d= float(duration);
 			for(unsigned i=0; i<from.size(); i++){
 				args.b=from[i];
@@ -115,8 +119,40 @@ float ofxTween::update() {
 				easingFunction->notify(this,args);
 				pTarget[i] = args.res;
 			}
-			running = true;
+			if(pTarget[0]==to[0])
+				running=false;
+			else
+				running = true;
+		}else{
+			if (timestamp.isElapsed(duration)){
+				for(unsigned i=0; i<from.size(); i++){
+					pTarget[i] = to[i];
+				}
+				running = false;
+				completed = true;
+				ofNotifyEvent(end_E,id);
+			}
+
+			else if(timestamp.elapsed()>0){
+				ofxEasingArgs args;
+				float elapsedTime = float(timestamp.elapsed());
+				args.t= elapsedTime;
+				args.d= float(duration);
+				for(unsigned i=0; i<from.size(); i++){
+					args.b=from[i];
+					args.c=change[i];
+
+					easingFunction->notify(this,args);
+					pTarget[i] = args.res;
+				}
+				running = true;
+			}
 		}
 	}
 	return getTarget(0);
+}
+
+
+void ofxTween::setFrameBasedAnimation(bool frameBased){
+	this->frameBased = frameBased;
 }
