@@ -3,6 +3,8 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
+	ofSetVerticalSync(true);
+
 	unsigned delay = 2000;
 	unsigned duration = 1000;
 	tweenback.setParameters(1,easingback,ofxTween::easeOut,0,ofGetWidth()-100,duration,delay);
