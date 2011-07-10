@@ -129,11 +129,10 @@ float ofxTween::map(float value, float inputMin, float inputMax, float outputMin
 float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing, ofxEasingType type)
 {
 	ofxEasingArgs args;
-	args.t = value;
 	if(clamp){
-		args.t = ofClamp(value, inputMin, inputMax);
+		value = ofClamp(value, inputMin, inputMax);
 	}
-	
+	args.t = value - inputMin;
 	args.c = outputMax - outputMin;
 	args.d = inputMax - inputMin;
 	args.b = outputMin;
