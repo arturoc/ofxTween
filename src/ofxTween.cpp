@@ -77,7 +77,7 @@ void ofxTween::start(){
 	}
 }
 
-void ofxTween::setDuration(uint _duration) {
+void ofxTween::setDuration(int _duration) {
 	if(frameBased){
 		duration = _duration;
 	}else{
@@ -85,7 +85,7 @@ void ofxTween::setDuration(uint _duration) {
 	}
 }
 
-uint ofxTween::getDuration() {
+int ofxTween::getDuration() {
 	return duration;
 }
 
