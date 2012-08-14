@@ -1,6 +1,9 @@
 #ifndef TWEEN_INCLUDED
 #define TWEEN_INCLUDED
 
+#ifndef uint
+#define uint unsigned int
+#endif
 
 #include "Poco/Timestamp.h"
 #include "ofxEasing.h"
