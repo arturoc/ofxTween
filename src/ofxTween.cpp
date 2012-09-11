@@ -157,37 +157,36 @@ void ofxTween::setFrameBasedAnimation(bool frameBased){
 	this->frameBased = frameBased;
 }
 
-float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing)
+float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, const ofxEasing & easing)
 {
 	return ofxTween::map(value, inputMin, inputMax, outputMin, outputMax, clamp, easing, ofxTween::easeInOut);
 }
 
-float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing, ofxEasingType type)
+float ofxTween::map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, const ofxEasing & easing, ofxEasingType type)
 {
-	ofxEasingArgs args;
 	if(clamp){
 		value = ofClamp(value, inputMin, inputMax);
 	}
-	args.t = value - inputMin;
-	args.c = outputMax - outputMin;
-	args.d = inputMax - inputMin;
-	args.b = outputMin;
-	
+	float t = value - inputMin;
+	float c = outputMax - outputMin;
+	float d = inputMax - inputMin;
+	float b = outputMin;
+	float res;
 	switch (type) {
 		case ofxTween::easeIn:
 		{
-			easing.easeIn(args);
+			res = easing.easeIn(t,b,c,d);
 			break;
 		}
 		case ofxTween::easeOut:
 		{
-			easing.easeOut(args);
+			res = easing.easeOut(t,b,c,d);
 			break;
 		}
 		default:
-			easing.easeInOut(args);
+			res = easing.easeInOut(t,b,c,d);
 	}
 	
-	return args.res;
+	return res;
 }
 

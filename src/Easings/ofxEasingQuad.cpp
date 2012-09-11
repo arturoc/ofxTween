@@ -1,13 +1,13 @@
 #include "ofxEasingQuad.h"
 
-float ofxEasingQuad::easeIn (float t,float b , float c, float d) {
+float ofxEasingQuad::easeIn (float t,float b , float c, float d)  const{
 	return c*(t/=d)*t + b;
 }
-float ofxEasingQuad::easeOut(float t,float b , float c, float d) {
+float ofxEasingQuad::easeOut(float t,float b , float c, float d)  const{
 	return -c *(t/=d)*(t-2) + b;
 }
 
-float ofxEasingQuad::easeInOut(float t,float b , float c, float d) {
+float ofxEasingQuad::easeInOut(float t,float b , float c, float d)  const{
 	if ((t/=d/2) < 1) return c/2*t*t + b;
 	return -c/2 * ((--t)*(t-2) - 1) + b;
 	

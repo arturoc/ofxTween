@@ -1,13 +1,10 @@
 #ifndef TWEEN_INCLUDED
 #define TWEEN_INCLUDED
 
-#ifndef uint
-#define uint unsigned int
-#endif
-
 #include "Poco/Timestamp.h"
 #include "ofxEasing.h"
 #include "ofMain.h"
+
 
 class ofxTween{
 
@@ -49,8 +46,8 @@ class ofxTween{
 		
 		//James George 12/27/10
 		//added static functions for tweened mapping without needing to create an ofxTween object
-		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing);
-		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, ofxEasing & easing, ofxEasingType type);
+		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, const ofxEasing & easing);
+		static float map(float value, float inputMin, float inputMax, float outputMin, float outputMax, bool clamp, const ofxEasing & easing, ofxEasingType type);
 		
 	private:
 		typedef Poco::Delegate<ofxEasing,ofxEasingArgs,false> ofxTweenDelegate;
