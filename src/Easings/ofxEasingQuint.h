@@ -5,6 +5,7 @@ class ofxEasingQuint: public ofxEasing {
 
 	public:
 
+    ofxEasingQuint* clone () const { return new ofxEasingQuint(*this); }
 		float easeIn(float t,float b , float c, float d) const;
 		float easeOut(float t,float b , float c, float d) const;
 		float easeInOut(float t,float b , float c, float d) const;

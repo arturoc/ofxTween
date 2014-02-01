@@ -6,10 +6,25 @@ ofxTween::ofxTween(){
 	easingFunction = NULL;
 	running = false;
 
-
 	easing = NULL;
 	id = -1;
 	frameBased = false;
+}
+
+ofxTween::ofxTween(const ofxTween &other)
+: id(other.id), end_E(other.end_E), timestamp(other.timestamp), from(other.from), to(other.to), change(other.change), pTarget(other.pTarget), elapsed(other.elapsed), startTime(other.startTime), delay(other.delay), duration(other.duration), running(other.running), completed(other.completed), type(other.type), frameBased(other.frameBased) {
+    if (other.easingFunction) {
+        easingFunction = new ofxTweenDelegate(*other.easingFunction);
+    }
+    else {
+        easingFunction = NULL;
+    }
+    if (other.easing) {
+        easing = other.easing->clone();
+    }
+    else {
+        easing = NULL;
+    }
 }
 
 ofxTween::ofxTween(int id,  ofxEasing & easing, ofxEasingType type,  float from, float to, unsigned duration, unsigned delay) {
@@ -33,8 +48,9 @@ void ofxTween::setParameters(int _id,  ofxEasing & _easing, ofxEasingType _type,
 	id 		= _id;
 	type 	= _type;
 	easing 	= &_easing;
+    
 	if(easingFunction) delete easingFunction;
-	switch(type){
+    switch(type){
 	case easeIn:
 		easingFunction = new ofxTweenDelegate(easing, &ofxEasing::easeIn);
 	break;

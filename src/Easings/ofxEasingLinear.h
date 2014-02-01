@@ -6,6 +6,7 @@ class ofxEasingLinear: public ofxEasing {
 
 	public:
 
+    ofxEasingLinear* clone () const { return new ofxEasingLinear(*this); }
 		float easeNone(float t,float b , float c, float d) const; // ??
 		float easeIn(float t,float b , float c, float d) const;
 		float easeOut(float t,float b , float c, float d) const;
