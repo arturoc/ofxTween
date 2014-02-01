@@ -20,7 +20,7 @@ ofxTween::ofxTween(const ofxTween &other)
         easingFunction = NULL;
     }
     if (other.easing) {
-        easing = other.easing->clone();
+        easing = other.easing;
     }
     else {
         easing = NULL;
