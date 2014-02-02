@@ -21,7 +21,7 @@ class ofxTween{
         // Added copy constructor to handle heap allocation (now much easier
         // to work on stack and copy classes that contain a tween object).
         ofxTween(const ofxTween &other);
-        ofxTween& operator=(const ofxTween &other);
+        ofxTween operator=(const ofxTween &other);
 
 		void setParameters(int id, ofxEasing & easing, ofxEasingType type, float from, float to,  unsigned duration, unsigned delay);
 		void setParameters( ofxEasing & easing, ofxEasingType type, float from, float to,  unsigned duration, unsigned delay);

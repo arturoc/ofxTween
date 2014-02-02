@@ -41,7 +41,7 @@ frameBased(other.frameBased) {
     }
 }
 
-ofxTween& ofxTween::operator=(const ofxTween &other)
+ofxTween ofxTween::operator=(const ofxTween &other)
 {
     id = other.id;
     end_E = other.end_E;
@@ -70,6 +70,7 @@ ofxTween& ofxTween::operator=(const ofxTween &other)
     else {
         easing = NULL;
     }
+    return *this;
 }
 
 ofxTween::ofxTween(int id,  ofxEasing & easing, ofxEasingType type,  float from, float to, unsigned duration, unsigned delay) {
