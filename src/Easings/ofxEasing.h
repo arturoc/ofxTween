@@ -14,6 +14,7 @@ public:
 
 class ofxEasing{
 public:
+    
 		void easeIn(ofxEasingArgs & args);
 		void easeOut(ofxEasingArgs & args);
 		void easeInOut(ofxEasingArgs & args);

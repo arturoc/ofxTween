@@ -7,7 +7,6 @@
 
 #include "ofxEasing.h"
 
-
 void ofxEasing::easeIn(ofxEasingArgs & args){
 	args.res=easeIn(args.t,args.b,args.c,args.d);
 }
