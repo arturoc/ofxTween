@@ -167,40 +167,46 @@ bool ofxTween::isCompleted() {
 }
 
 float ofxTween::update() {
-	if(!completed){
+	if (!completed) {
 
-		if(frameBased){
-			ofxEasingArgs args;
-			elapsed++;
-			args.t= elapsed;
-			args.d= float(duration);
-			for(unsigned i=0; i<from.size(); i++){
-				args.b=from[i];
-				args.c=change[i];
-
-				easingFunction->notify(this,args);
-				pTarget[i] = args.res;
-			}
-			if(pTarget[0]==to[0])
-				running=false;
-			else
-				running = true;
-		}else{
-			if (timestamp.isElapsed(duration)){
-				for(unsigned i=0; i<from.size(); i++){
+		if (frameBased) {
+			if (elapsed >= delay + duration) {
+				for(unsigned i=0; i<from.size(); i++) {
 					pTarget[i] = to[i];
 				}
 				running = false;
 				completed = true;
 				ofNotifyEvent(end_E,id);
-			}
+			} else if (elapsed >= 0) {
+				elapsed++;
+				if (elapsed > delay) {
+					ofxEasingArgs args;
+					args.t= elapsed - delay;
+					args.d= float(duration);
+					for (unsigned i=0; i<from.size(); i++) {
+						args.b=from[i];
+						args.c=change[i];
 
-			else if(timestamp.elapsed()>0){
+						easingFunction->notify(this,args);
+						pTarget[i] = args.res;
+					}
+					running = true;
+				}
+			}
+		} else {
+			if (timestamp.isElapsed(duration)) {
+				for (unsigned i=0; i<from.size(); i++) {
+					pTarget[i] = to[i];
+				}
+				running = false;
+				completed = true;
+				ofNotifyEvent(end_E,id);
+			} else if (timestamp.elapsed()>0) {
 				ofxEasingArgs args;
 				float elapsedTime = float(timestamp.elapsed());
 				args.t= elapsedTime;
 				args.d= float(duration);
-				for(unsigned i=0; i<from.size(); i++){
+				for (unsigned i=0; i<from.size(); i++) {
 					args.b=from[i];
 					args.c=change[i];
 
